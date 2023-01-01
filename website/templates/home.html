@@ -1,0 +1,36 @@
+{% extends "base.html" %} {% block title %}Home{% endblock %} {% block content
+%}
+  <div class="card mt-5">
+    <div class="card-header">Admin panel</div>
+    <div class="card-body">
+      <h5 class="card-title">Welcome, {{user.username}}</h5>
+      <p class="card-text">
+        <table class="table table-light">
+            <thead>
+              <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Username</th>
+                <th scope="col">Action</th>
+                <th scope="col">Handle</th>
+              </tr>
+            </thead>
+        {% for user in usernames %}
+        <tbody>
+            <tr>
+              <th scope="row">{{user.id}}</th>
+              <td>{{user.username}}</td>
+              <td><button onclick="deleteUser({{ user.id }})">Delete User</button></td>
+              <td>@mdo</td>
+            </tr>
+          </tbody>
+        {% endfor %}
+
+
+          </table>
+      </p>
+      <a href="#" class="btn btn-primary">refresh</a>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

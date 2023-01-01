@@ -1,0 +1,46 @@
+{% extends "base.html" %}{% block title %}Home{% endblock %} {% block content %}
+
+<div class="container py-3" id="chat">
+  <div class="row">
+    <div class="col-md-8">
+      <h1>Chat</h1>
+
+      <div class="chat-message">
+        <ul class="chat">
+          <!-- Zobrazuje zprávy -->
+          <div id="scrolldown" style="overflow-y: scroll; height: 300px">
+            <ul>
+              {% for user_message in user_messages %}
+              <li>
+                {{ user_message.text }} (sent by user {{
+                user_message.author.name }})
+              </li>
+              {% endfor %}
+            </ul>
+          </div>
+        </ul>
+      </div>
+      <!-- Formulář pro odeslání zprávy -->
+      <form id="chat-form" action="/send" method="POST">
+        <div class="chat-box bg-white">
+          <div class="input-group">
+            <input
+              type="text"
+              name="text"
+              class="form-control border no-shadow no-rounded"
+              placeholder="Type your message here"
+            />
+            <input type="hidden" name="user_id" value="{{ current_user.id }}" />
+            <span class="input-group-btn">
+              <button class="btn btn-success no-rounded" type="submit">
+                Send
+              </button>
+            </span>
+          </div>
+        </div>
+      </form>
+    </div>
+
+    {% endblock %}
+  </div>
+</div>
